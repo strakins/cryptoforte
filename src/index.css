@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+
+@layer utilities {
+    .bg-primary {
+      background-color: #C4D9FF;
+    }
+    .text-primary {
+      /* color: #3490dc; */
+    }
+    .bg-secondary {
+      background-color: #061458;
+    }
+    .text-secondary {
+      color: #061458;
+    }
+    .btn_color {
+      color: #DE3A6A;
+    }
+    .actice {
+      color: #DE3A6A;
+    }
+  }
