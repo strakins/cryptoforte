@@ -1,11 +1,41 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-// import { motion, AnimatePresence } from 'framer-motion';
-import {motion, AnimatePresence} from 'framer-motion'
-import Logo from '../assets/cryptofortelogo2.png'
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import Logo from '../assets/cryptofortelogo2.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showJoinModal, setShowJoinModal] = useState(false);
+  const location = useLocation();
+
+  const handleJoinClick = () => {
+    setShowJoinModal(true);
+  };
+
+  const confirmJoin = () => {
+    window.open('https://t.me/thecryptoforte', '_blank');
+    setShowJoinModal(false);
+    setIsOpen(false);
+  };
+
+  // Improved active link checker
+  const isActive = (path) => {
+    return location.pathname === path || 
+           (path !== '/' && location.pathname.startsWith(path));
+  };
+
+  // Nav link component to avoid repetition
+  const NavLink = ({ to, children }) => (
+    <Link 
+      to={to}
+      className={`text-white  ${
+        isActive(to) ? 'text-[15px] font-bold' : ''
+      }`}
+      onClick={() => setIsOpen(false)}
+    >
+      {children}
+    </Link>
+  );
 
   return (
     <header className="py-4 shadow-md bg-[#071D49] relative z-50">
@@ -13,7 +43,7 @@ const Navbar = () => {
         <div className="flex h-16 items-center justify-between">
           <div className="flex-1 md:flex md:items-center md:gap-12">
             <Link to="/">
-            <img src={Logo} className="h-8 md:h-12" alt="Logo" />
+              <img src={Logo} className="h-8 md:h-12" alt="Logo" />
             </Link>
           </div>
 
@@ -21,19 +51,22 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">
-                <li><Link to="/" className="text-white hover:text-[#E52B50]"> Home </Link></li>
-                <li><Link to="/events" className="text-white hover:text-[#E52B50]"> Events </Link></li>
-                <li><Link to="/about-us" className="text-white hover:text-[#E52B50]"> About Us </Link></li>
-                <li><Link to="/contact-us" className="text-white hover:text-[#E52B50]"> Contact Us </Link></li>
-                <li><Link to="/contents" className="text-white hover:text-[#E52B50]"> Contents </Link></li>
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/events">Events</NavLink></li>
+                <li><NavLink to="/about-us">About Us</NavLink></li>
+                <li><NavLink to="/contact-us">Contact Us</NavLink></li>
+                <li><NavLink to="/contents">Contents</NavLink></li>
               </ul>
             </nav>
 
             <div className="flex items-center gap-4">
               <div className="hidden sm:flex sm:gap-4">
-                <a className="rounded-md bg-[#E52B50] px-5 py-2.5 text-sm font-medium text-white shadow" href="#">
+                <button 
+                  className="rounded-md bg-[#E52B50] px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-[#c82342] transition-colors"
+                  onClick={handleJoinClick}
+                >
                   Join Community
-                </a>
+                </button>
               </div>
 
               {/* Hamburger Icon */}
@@ -69,17 +102,56 @@ const Navbar = () => {
             className="md:hidden absolute top-full left-0 w-full bg-[#071D49] shadow-md py-4"
           >
             <ul className="flex flex-col space-y-4 px-6 text-sm">
-              <li><Link to="/" onClick={() => setIsOpen(false)} className="text-white hover:text-[#E52B50]"> Home </Link></li>
-              <li><Link to="/events" onClick={() => setIsOpen(false)} className="text-white hover:text-[#E52B50]"> Events </Link></li>
-              <li><Link to="/about-us" onClick={() => setIsOpen(false)} className="text-white hover:text-[#E52B50]"> About Us </Link></li>
-              <li><Link to="/contact-us" onClick={() => setIsOpen(false)} className="text-white hover:text-[#E52B50]"> Contact Us </Link></li>
-              <li><Link to="/contents" onClick={() => setIsOpen(false)} className="text-white hover:text-[#E52B50]"> Contents </Link></li>
+              <li><NavLink to="/">Home</NavLink></li>
+              <li><NavLink to="/events">Events</NavLink></li>
+              <li><NavLink to="/about-us">About Us</NavLink></li>
+              <li><NavLink to="/contact-us">Contact Us</NavLink></li>
+              <li><NavLink to="/contents">Contents</NavLink></li>
               <li>
-                <a href="#" className="rounded-md bg-[#E52B50] px-5 py-2.5 text-sm font-medium text-white shadow text-center block">
+                <button 
+                  onClick={handleJoinClick}
+                  className="rounded-md bg-[#E52B50] px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-[#c82342] transition-colors text-center block w-full"
+                >
                   Join Community
-                </a>
+                </button>
               </li>
             </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Join Community Modal */}
+      <AnimatePresence>
+        {showJoinModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+          >
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="bg-white p-6 rounded-lg max-w-sm w-full mx-4"
+            >
+              <h3 className="font-bold text-lg mb-4">Join Our Community</h3>
+              <p className="mb-4">You're about to join our Telegram group. Would you like to proceed?</p>
+              <div className="flex justify-end space-x-3">
+                <button 
+                  className="px-4 py-2 border rounded hover:bg-gray-100 transition-colors"
+                  onClick={() => setShowJoinModal(false)}
+                >
+                  Cancel
+                </button>
+                <button 
+                  className="px-4 py-2 bg-[#E52B50] text-white rounded hover:bg-[#c82342] transition-colors"
+                  onClick={confirmJoin}
+                >
+                  Join
+                </button>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

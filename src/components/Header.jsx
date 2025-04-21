@@ -37,7 +37,7 @@ const Header = () => {
         </p>
       </div>
 
-      <div className="py-8 md:py-16"> {/* Reduced padding on mobile */}
+      <div className="py-8  md:py-16"> {/* Reduced padding on mobile */}
       <div className="flex justify-center items-center z-10 relative">
         {/* Mobile View (only first image) */}
         <div className="md:hidden w-full px-4"> {/* Full width on mobile with padding */}
