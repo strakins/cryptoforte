@@ -7,8 +7,9 @@ import NewsLetterSubscribe from "../components/NewsLetterSubscribe"
 const Events = () => {
   return (
     <div>
-      {/* <h1 className="text-4xl text-red-400 text-center mt-12">Events</h1>  */}
-      < EventsPageCarousel />
+      <div className="bg-primary py-5">
+        < EventsPageCarousel />
+      </div>
 
       <DontMissEvents />
 

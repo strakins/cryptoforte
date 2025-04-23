@@ -23,12 +23,12 @@ const EventsPageCarousel = () => {
   }, [currentSlide]);
 
   return (
-    <section className="w-full bg-white px-4 py-4 md:py-8 md:px-8">
+    <section className="w-full px-4 py-4 md:py-8 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <main className="relative overflow-hidden rounded-lg shadow-lg">
+        <main className="relative overflow-hidden rounded-lg ">
           {/* Header - Centered "Our Events" title */}
           <div className="absolute top-0 left-0 right-0 z-10 flex justify-center pt-6">
-            <h2 className="text-3xl font-bold text-white px-6 py-2 rounded-lg">
+            <h2 className="text-2xl md:text-3xl font-bold text-white px-6 py-2 rounded-lg">
               Our Events
             </h2>
           </div>
@@ -41,7 +41,7 @@ const EventsPageCarousel = () => {
             {eventList.map((list) => (
               <div key={list.id} className="flex-shrink-0 w-full relative">
                 {/* Background image with full-card gradient overlay */}
-                <div className="relative h-96">
+                <div className="relative h-96 md:h-[500px]">
                   <div 
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${list.img})`}}
@@ -52,15 +52,17 @@ const EventsPageCarousel = () => {
                   
 
                   {/* Content positioned absolutely to appear above gradient */}
-                  <div className="relative z-10 h-full flex flex-col justify-end p-6 text-white">
-                    <h3 className="text-3xl font-bold mb-1 tracking-wider">{list.name}</h3>
+                  <div className="relative z-10 h-full flex flex-col justify-end px-4 py-18 md:px-12 md:py-12 text-white">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-1 tracking-wider">{list.name}</h3>
                     <p className="text-gray-200 font-semibold text-sm mb-1">{list.address}</p>
                     <p className="text-red-300 text-sm mb-4">{list.date}</p>
                     <Link
                       to={`/events/${list.id}`}
-                      className="inline-block w-fit bg-white text-black px-4 py-2 rounded-md font-medium hover:bg-gray-100 transition-colors"
+                      className="flex items-center gap-2 w-fit  "
                     >
                       Learn More
+                      <FaArrowRight className="text-sm mt-1" />
+
                     </Link>
                   </div>
                 </div>
@@ -69,18 +71,18 @@ const EventsPageCarousel = () => {
           </div>
 
           {/* Navigation Arrows Container */}
-          <div className="absolute bottom-6 right-6 flex space-x-2">
+          <div className="absolute bottom-0 right-0 flex space-x-6 bg-primary px-4 md:px-32 py-2 md:py-4 rounded-tl-xl">
             <button
               onClick={prevSlide}
-              className="p-3 bg-gray-600 bg-opacity-80 hover:bg-opacity-100 transition-all rounded-tl-xl rounded-br-md text-white"
+              className="p-3 bg-inherit border rounded "
             >
-              <FaArrowLeft className="text-xl" />
+              <FaArrowLeft className="text-lg" />
             </button>
             <button
               onClick={nextSlide}
-              className="p-3 bg-gray-600 bg-opacity-80 hover:bg-opacity-100 transition-all rounded-tl-xl rounded-br-md text-white"
+              className="p-3 bg-inherit border rounded "
             >
-              <FaArrowRight className="text-xl" />
+              <FaArrowRight className="text-lg" />
             </button>
           </div>
         </main>

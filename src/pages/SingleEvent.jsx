@@ -61,7 +61,7 @@ const SingleEvent = () => {
 
 
   return (
-    <div>
+    <div className='bg-primary'>
       <EventsPageCarousel />
 
       <section className="w-full bg-white px-4 py-8 md:px-8">
