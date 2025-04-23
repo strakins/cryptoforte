@@ -1,5 +1,5 @@
 
-import Students from '../assets/groupcryptoforte.png';
+import Students from '../assets/buildcon004.png';
 import Hakaton from '../assets/Hakaton_Rep.png';
 import Hakaton1 from '../assets/buildcon002.png';
 import { HiUserGroup } from "react-icons/hi2";
@@ -10,8 +10,7 @@ import topRightImage from '../assets/candyshapes.png';
 
 const Header = () => {
   return (
-    
-    <section className="relative flex flex-col lg:flex-row h-screen items-center px-4 lg:px-20 bg-primary">
+    <section className="relative flex flex-col lg:flex-row md:h-screen  items-center px-4 lg:px-20 bg-primary">
       <div className="absolute top-0 right-0 p-0 z-0">
               <img 
                 src={topRightImage} 
@@ -28,7 +27,7 @@ const Header = () => {
                 className="w-32 h-48 object-cover transform rotate-180" 
               />
       </div>
-      <div className="my-6 md:my-10 lg:my-16 text-center mx-2 md:w-3/2 z-10">
+      <div className="my-3 md:my-10 lg:my-16 text-center mx-2 md:w-3/2 z-10">
         <h1 className="text-[17px] md:text-3xl lg:text-5xl font-bold mb-2 md:mb-4">Your Forte in Web3 Begins Here!</h1>
         <h3 className="text-[12px] md:text-xl lg:text-2xl font-semibold mb-2 md:mb-4">Start Strong, Stay Confident And Explore Crypto with Ease</h3>
 
@@ -40,25 +39,19 @@ const Header = () => {
       <div className="py-8  md:py-16"> {/* Reduced padding on mobile */}
       <div className="flex justify-center items-center z-10 relative">
         {/* Mobile View (only first image) */}
-        <div className="md:hidden w-full px-4"> {/* Full width on mobile with padding */}
-          <img
-            src={Hakaton1}
-            alt="Image 1"
-            className="w-full h-auto object-cover rounded-2xl"
-          />
-        </div>
+        
 
         {/* Desktop View (full gallery) */}
         <div className="hidden md:grid grid-cols-2 gap-0 w-2/3 h-[400px]"> {/* Fixed height */}
-          <div className='relative' style={{marginRight:'-110px'}}>
+          <div className='relative' style={{marginRight:'-100px'}}>
             <img
               src={Hakaton1}
               alt="Image 1"
               className="w-full h-full object-cover rounded-tl-2xl"
             />
-          </div>
+          </div> 
           
-          <div className='bg-gray-400 z-20 relative flex flex-col ml-[125px] gap-2 w-fit px-4 rounded-lg items-center justify-center'
+          <div className='bg-gray-400 z-20 relative flex flex-col ml-[110px] gap-2 w-fit px-4 rounded-lg items-center justify-center'
             style={{marginBottom: "-10px"}}
           >
             <article className='bg-slate-900 flex flex-col items-center p-2 rounded-lg'>
@@ -79,11 +72,11 @@ const Header = () => {
             <img
               src={Students}
               alt="Image 3"
-              className="w-full h-full object-cover rounded-bl-2xl"
+              className="w-full h-[300px] object-cover rounded-bl-2xl"
             />
           </div>
           
-          <div className='relative z-0' style={{marginLeft: '-80px'}}>
+          <div className='relative z-0' style={{marginLeft: '-40px'}}>
             <img
               src={Hakaton}
               alt="Hakaton Reps"
